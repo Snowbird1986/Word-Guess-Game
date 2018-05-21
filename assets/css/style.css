@@ -1,0 +1,26 @@
+.jumbotron {
+    background-image: url(../images/gallows.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    height: 400px;
+    width:80%;
+    margin-left:10%;
+
+}
+body {
+    background-image: url(../images/old\ west.jpg);
+    background-size: cover;
+}
+h1 {
+    transform: rotate(-45deg);
+    margin-top:80px;
+    color: firebrick;
+    font-size: 50px;
+    font-weight: bold;
+
+}
+.col-md-6 {
+    border: 2px solid darkolivegreen;
+    background-color:darkgray
+}
