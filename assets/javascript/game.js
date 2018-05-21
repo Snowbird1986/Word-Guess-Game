@@ -15,22 +15,26 @@ function randomizer () {
 //variables used after randomizer
 var thisGameWord = randomizer ()
 var length = thisGameWord.length;
-var blank = "_";
+var blank = "_ ";
 var letters = blank.repeat(length)
+var guessCount = 8
+var wins = 0
 console.log(thisGameWord);
 console.log(length);
 console.log(letters)
 //attempting to type blanks into an html.
-function startGame() {
-    document.querySelector('#demo1').innerHTML = letters;
+window.onload = function startGame() {
+    document.getElementById("blanks").innerHTML = "Current Word: "+letters;
+    document.getElementById("guessRemaining").innerHTML = "Guesses Remaining: "+guessCount;
+    document.getElementById("wins").innerHTML = "Wins: "+wins;
 }
-startGame()
 
 
 
 document.onkeyup = function(event) {
-    console.log("You Chose "+ event.key);
     var userGuess = event.key.toLowerCase();
-    
+    console.log("You Chose "+ userGuess);
+    document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
 
 };
+

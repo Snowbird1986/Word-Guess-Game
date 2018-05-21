@@ -22,5 +22,6 @@ h1 {
 }
 .col-md-6 {
     border: 2px solid darkolivegreen;
-    background-color:darkgray
+    background-color:darkgray;
+    text-align:center;
 }
