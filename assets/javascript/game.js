@@ -12,24 +12,27 @@ var words = {
 function randomizer () {
     return Object.values(words)[Math.floor((Math.random() * Object.values(words).length))];
 };
+
 //variables used after randomizer
-var thisGameWord = randomizer ()
+var thisGameWord = randomizer ();
 var length = thisGameWord.length;
 var blank = "_";
-var letters = blank.repeat(length)
+var letters = blank.repeat(length);
 var letters = [];
-for(var i = 0; i< length; i++){ letters.push("_");}
-var guessCount = 8
-var wins = 0
+for(var i = 0; i< length; i++){ letters.push("_");};
+var guessCount = 8;
+var wins = 0;
 var j = 1;
-// console.log(thisGameWord);
+// var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
+// var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
+console.log(thisGameWord);
 // console.log(length);
 // console.log(letters)
 //attempting to type blanks into an html.
 window.onload = function startGame() {
     document.getElementById("blanks").innerHTML = "CURRENT WORD: "+ letters.join(" ");
     document.getElementById("guessRemaining").innerHTML = "GUESSES REMAINING: "+guessCount;
-    document.getElementById("wins").innerHTML = "WINS: "+wins;
+    document.getElementById("wins").innerHTML = "WINS: " + sessionStorage.getItem("wins");
 }
 
 
@@ -37,10 +40,16 @@ window.onload = function startGame() {
 document.onkeyup = function(event) {
     var userGuess = event.key.toLowerCase();
     console.log("You Chose "+ userGuess);
-    var guessedAlready = document.getElementById("lettersGuessed").innerHTML
-    console.log (guessedAlready.indexOf(userGuess))
+    var guessedAlready = document.getElementById("lettersGuessed").innerHTML;
+    // console.log (guessedAlready.indexOf(userGuess))
+    
+    console.log (guessedAlready.slice(42,100))
     if(guessedAlready.indexOf(userGuess)==-1){
-    document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
+        var guessAdded = document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
+        var sortedGuesses = guessAdded.slice(42,100).split(', ').sort().join(', ');
+        console.log (sortedGuesses)
+        // document.getElementById(("lettersGuessed").innerHTML = "LETTERS GUESSED: " + sortedGuesses
+    
     // if(guessedAlready==userGuess){}
     if (thisGameWord.indexOf(userGuess) > -1) {
         for (i=0;i<length; i++)
@@ -53,7 +62,15 @@ document.onkeyup = function(event) {
                 // console.log(thisGameWord)
             }
             if (letters.join("")==thisGameWord){
+                // var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3");
+                // winAudio();
                 alert ("Congrats you won!");
+                function reloadWin () {
+                    wins ++;
+                    sessionStorage.setItem("wins", wins);
+                    document.location.reload();
+                }
+                reloadWin()
 
             }
 
@@ -65,7 +82,13 @@ document.onkeyup = function(event) {
         var guessCountMiss = (guessCount-misses)
         document.getElementById("guessRemaining").innerHTML = "Guesses Remaining: " + guessCountMiss;
         if(guessCountMiss==0) {
-            alert ("You Lose!!")
+            // var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3");
+            // lossAudio();
+            alert ("You Lose!!");
+            function reloadLoss () {
+                document.location.reload();
+            }
+            reloadLoss()
         }
     }}
     // }
