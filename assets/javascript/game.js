@@ -47,10 +47,10 @@ document.onkeyup = function(event) {
     
     console.log (guessedAlready.slice(42,100))
     if(guessedAlready.indexOf(userGuess)==-1){
-        var guessAdded = document.getElementById("lettersGuessed").innerHTML  += userGuess+", ";
+        var guessAdded = document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
         // var sortedGuesses = guessAdded.slice(42,100).split(', ').sort().join(', ');
         // console.log (sortedGuesses)
-        // document.getElementById(("lettersGuessed").innerHTML = "LETTERS GUESSED: " + sortedGuesses
+        // document.getElementById("lettersGuessed").innerHTML = "LETTERS GUESSED: " +<br>+ sortedGuesses
     
     // if(guessedAlready==userGuess){}
     if (thisGameWord.indexOf(userGuess) > -1) {
