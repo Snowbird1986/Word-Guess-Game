@@ -84,7 +84,7 @@ document.onkeyup = function(event) {
         if(guessCountMiss==0) {
             // var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3");
             lossAudio.play();
-            alert ("You Lose!!");
+            alert ("You Lose!! Try again.");
             function reloadLoss () {
                 document.location.reload();
             }
