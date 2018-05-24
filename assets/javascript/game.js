@@ -23,8 +23,8 @@ for(var i = 0; i< length; i++){ letters.push("_");};
 var guessCount = 8;
 var wins = 0;
 var j = 1;
-// var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
-// var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
+var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
+var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
 console.log(thisGameWord);
 // console.log(length);
 // console.log(letters)
@@ -63,7 +63,7 @@ document.onkeyup = function(event) {
             }
             if (letters.join("")==thisGameWord){
                 // var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3");
-                // winAudio();
+                winAudio.play();
                 alert ("Congrats you won!");
                 function reloadWin () {
                     wins ++;
@@ -83,7 +83,7 @@ document.onkeyup = function(event) {
         document.getElementById("guessRemaining").innerHTML = "Guesses Remaining: " + guessCountMiss;
         if(guessCountMiss==0) {
             // var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3");
-            // lossAudio();
+            lossAudio.play();
             alert ("You Lose!!");
             function reloadLoss () {
                 document.location.reload();
