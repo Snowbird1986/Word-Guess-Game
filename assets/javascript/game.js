@@ -22,6 +22,7 @@ var letters = [];
 for(var i = 0; i< length; i++){ letters.push("_");};
 var guessCount = 8;
 var wins = 0;
+var losses = 0;
 var j = 1;
 var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
 var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
@@ -33,6 +34,7 @@ window.onload = function startGame() {
     document.getElementById("blanks").innerHTML = "CURRENT WORD: "+ letters.join(" ");
     document.getElementById("guessRemaining").innerHTML = "GUESSES REMAINING: "+guessCount;
     document.getElementById("wins").innerHTML = "WINS: " + sessionStorage.getItem("wins");
+    document.getElementById("losses").innerHTML = "LOSSES: " + sessionStorage.getItem("losses");
 }
 
 
@@ -86,6 +88,8 @@ document.onkeyup = function(event) {
             lossAudio.play();
             alert ("You Lose!! Try again.");
             function reloadLoss () {
+                losses ++;
+                sessionStorage.setItem("losses", losses);
                 document.location.reload();
             }
             reloadLoss()
