@@ -42,7 +42,7 @@ window.onload = function startGame() {
 document.onkeyup = function(event) {
     var userGuess = event.key.toLowerCase();
     console.log("You Chose "+ userGuess);
-    var guessedAlready = document.getElementById("lettersGuessed").innerHTML;
+    var guessedAlready = document.getElementById("lettersGuessed").innerHTML.toUpperCase();
     // console.log (guessedAlready.indexOf(userGuess))
     
     console.log (guessedAlready.slice(42,100))
