@@ -21,8 +21,8 @@ var letters = blank.repeat(length);
 var letters = [];
 for(var i = 0; i< length; i++){ letters.push("_");};
 var guessCount = 8;
-var wins = 0;
-var losses = 0;
+var wins = sessionStorage.getItem("wins") ? sessionStorage.getItem("wins") : 0;
+var losses = sessionStorage.getItem("losses") ? sessionStorage.getItem("losses") : 0;
 var j = 1;
 var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
 var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
@@ -33,8 +33,8 @@ console.log(thisGameWord);
 window.onload = function startGame() {
     document.getElementById("blanks").innerHTML = "CURRENT WORD: "+ letters.join(" ");
     document.getElementById("guessRemaining").innerHTML = "GUESSES REMAINING: "+guessCount;
-    document.getElementById("wins").innerHTML = "WINS: " + sessionStorage.getItem("wins");
-    document.getElementById("losses").innerHTML = "LOSSES: " + sessionStorage.getItem("losses");
+    document.getElementById("wins").innerHTML = "WINS: " + wins;
+    document.getElementById("losses").innerHTML = "LOSSES: " + losses;
 }
 
 
@@ -42,14 +42,14 @@ window.onload = function startGame() {
 document.onkeyup = function(event) {
     var userGuess = event.key.toLowerCase();
     console.log("You Chose "+ userGuess);
-    var guessedAlready = document.getElementById("lettersGuessed").innerHTML.toUpperCase();
+    var guessedAlready = document.getElementById("lettersGuessed").innerHTML;
     // console.log (guessedAlready.indexOf(userGuess))
     
     console.log (guessedAlready.slice(42,100))
     if(guessedAlready.indexOf(userGuess)==-1){
         var guessAdded = document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
-        var sortedGuesses = guessAdded.slice(42,100).split(', ').sort().join(', ');
-        console.log (sortedGuesses)
+        // var sortedGuesses = guessAdded.slice(42,100).split(', ').sort().join(', ');
+        // console.log (sortedGuesses)
         // document.getElementById(("lettersGuessed").innerHTML = "LETTERS GUESSED: " + sortedGuesses
     
     // if(guessedAlready==userGuess){}
@@ -69,6 +69,7 @@ document.onkeyup = function(event) {
                 alert ("Congrats you won!");
                 function reloadWin () {
                     wins ++;
+                    // console.log (wins);
                     sessionStorage.setItem("wins", wins);
                     document.location.reload();
                 }
