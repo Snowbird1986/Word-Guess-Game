@@ -26,6 +26,7 @@ var losses = sessionStorage.getItem("losses") ? sessionStorage.getItem("losses")
 var j = 1;
 var lossAudio = new Audio("./assets/audio/Bone_crushing.mp3")
 var winAudio = new Audio ("./assets/audio/Short_triumphal_fanfare.mp3")
+var guesses = []
 console.log(thisGameWord);
 // console.log(length);
 // console.log(letters)
@@ -42,15 +43,18 @@ window.onload = function startGame() {
 document.onkeyup = function(event) {
     var userGuess = event.key.toLowerCase();
     console.log("You Chose "+ userGuess);
-    var guessedAlready = document.getElementById("lettersGuessed").innerHTML;
+    // var guessedAlready = document.getElementById("lettersGuessed").innerHTML;
     // console.log (guessedAlready.indexOf(userGuess))
     
-    console.log (guessedAlready.slice(42,100))
-    if(guessedAlready.indexOf(userGuess)==-1){
-        var guessAdded = document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
+    // console.log (guessedAlready.slice(42,100))
+    if(guesses.indexOf(userGuess)==-1){
+        // var guessAdded = document.getElementById("lettersGuessed").innerHTML += userGuess+", ";
+        guesses.push(userGuess);
         // var sortedGuesses = guessAdded.slice(42,100).split(', ').sort().join(', ');
+        guesses.sort()
         // console.log (sortedGuesses)
-        // document.getElementById("lettersGuessed").innerHTML = "LETTERS GUESSED: " +<br>+ sortedGuesses
+        // document.getElementById("lettersGuessed").innerHTML = "LETTERS GUESSED: " + sortedGuesses
+        document.getElementById("guesses").innerHTML = guesses.join(", ");
     
     // if(guessedAlready==userGuess){}
     if (thisGameWord.indexOf(userGuess) > -1) {
